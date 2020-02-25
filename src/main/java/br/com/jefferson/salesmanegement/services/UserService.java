@@ -7,13 +7,12 @@ import org.springframework.stereotype.Service;
 
 import br.com.jefferson.salesmanegement.domain.models.User;
 import br.com.jefferson.salesmanegement.domain.repository.UserRepository;
-import br.com.jefferson.salesmanegement.exceptions.UserEmailAlreadyUsedException;
 
 @Service
 public class UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public Optional<User> findById(Long id) {
         return userRepository.findById(id);

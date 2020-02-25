@@ -16,7 +16,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
@@ -32,6 +31,7 @@ public class Group implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName="id")
+    @JsonIgnore
     private User user;
 
     @Column(length = 128)
@@ -54,12 +54,20 @@ public class Group implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
+    public String getName() {
         return this.name;
     }
 
-    public void setNome(String nome) {
-        this.name = nome;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

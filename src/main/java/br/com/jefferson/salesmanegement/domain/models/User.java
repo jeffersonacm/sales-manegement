@@ -17,6 +17,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import br.com.jefferson.salesmanegement.domain.dto.UserDto;
+
 import java.util.List;
 
 @Entity
@@ -97,6 +99,14 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public UserDto toUserDto() {
+        UserDto userDto = new UserDto();
+        userDto.setId(this.id);
+        userDto.setMail(this.mail);
+        userDto.setName(this.name);
+        return userDto;
     }
 
 }
