@@ -22,7 +22,7 @@ import java.util.List;
 @Entity
 @Table(name = "tb_users")
 @EntityListeners(AuditingEntityListener.class)
-class User implements Serializable {
+public class User implements Serializable {
 
     public static final long serialVersionUID = 1L;
 
@@ -34,7 +34,7 @@ class User implements Serializable {
     @NotNull
     private String name;
 
-    @Column(length = 128)
+    @Column(length = 128, unique = true)
     @NotNull
     private String mail;
 

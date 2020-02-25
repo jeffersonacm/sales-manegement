@@ -22,7 +22,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "tb_groups")
 @EntityListeners(AuditingEntityListener.class)
-class Group implements Serializable {
+public class Group implements Serializable {
 
     public static final long serialVersionUID = 1L;
 

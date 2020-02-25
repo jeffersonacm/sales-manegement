@@ -20,7 +20,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "tb_sales")
 @EntityListeners(AuditingEntityListener.class)
-class Sale implements Serializable {
+public class Sale implements Serializable {
 
     public static final long serialVersionUID = 1L;
 

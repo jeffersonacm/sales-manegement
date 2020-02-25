@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_categories")
-class Categorie implements Serializable {
+public class Categorie implements Serializable {
 
     public static final long serialVersionUID = 1L;
 
