@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.jefferson.salesmanegement.domain.models.Group;
-import br.com.jefferson.salesmanegement.domain.models.User;
 import br.com.jefferson.salesmanegement.services.GroupService;
 import br.com.jefferson.salesmanegement.utils.RequestUtil;
 
@@ -44,9 +43,7 @@ public class GroupController {
 
     @PostMapping
     public ResponseEntity<Group> save(@Valid @RequestBody Group group, HttpServletRequest request) {
-        User user = requestUtil.getUserRequest().get();
-        System.out.println(user.getMail());
-
+        group.setUser(requestUtil.getUserRequest());
         Group groupSave = groupService.save(group);
 
         URI location = ServletUriComponentsBuilder
