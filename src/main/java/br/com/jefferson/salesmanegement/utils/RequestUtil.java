@@ -38,7 +38,7 @@ public class RequestUtil {
 
     public User getUserRequest() {
         String username = jwtUtil.extractUsername(getToken());
-        Optional<User> user = userService.findByEmail(username);
+        Optional<User> user = userService.findByMail(username);
 
         if (user.isPresent()) {
             return user.get();

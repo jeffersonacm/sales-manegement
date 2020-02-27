@@ -22,7 +22,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public Optional<User> findByEmail(String mail) {
+    public Optional<User> findByMail(String mail) {
         return userRepository.findByMail(mail);
     }
 

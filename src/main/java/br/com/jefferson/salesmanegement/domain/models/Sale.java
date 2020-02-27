@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
@@ -30,12 +32,13 @@ public class Sale implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @NotNull
+    @JsonIgnore
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "group_id", referencedColumnName = "id")
     @NotNull
+    @JsonIgnore
     private Group group;
 
     @Column(length = 128)
@@ -43,6 +46,7 @@ public class Sale implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "sale", targetEntity = ProductSold.class)
+    @JsonIgnore
     private List<ProductSold> productsSold;
 
     public Sale() {

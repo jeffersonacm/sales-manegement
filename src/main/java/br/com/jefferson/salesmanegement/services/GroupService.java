@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.jefferson.salesmanegement.domain.models.Group;
-import br.com.jefferson.salesmanegement.domain.models.User;
 import br.com.jefferson.salesmanegement.domain.repository.GroupRepository;
-import br.com.jefferson.salesmanegement.exceptions.UserNotFoundException;
 
 @Service
 public class GroupService {

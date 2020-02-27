@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_products")
@@ -27,6 +28,7 @@ public class Product implements Serializable {
     private Categorie categorie;
 
     @ManyToOne
+    @NotNull
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 

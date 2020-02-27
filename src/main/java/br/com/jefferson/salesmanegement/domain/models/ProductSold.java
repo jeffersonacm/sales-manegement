@@ -33,7 +33,6 @@ public class ProductSold implements Serializable {
     private Product product;
 
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 

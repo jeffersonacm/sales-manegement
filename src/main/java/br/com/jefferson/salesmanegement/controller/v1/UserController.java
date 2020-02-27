@@ -31,7 +31,7 @@ public class UserController {
     public ResponseEntity<UserDto> findById(@PathVariable Long id) {
         Optional<User> user = userService.findById(id);
 
-        if(user.isPresent()) {
+        if (user.isPresent()) {
             return ResponseEntity.ok(user.get().toUserDto());
         } else {
             return ResponseEntity.noContent().build();
@@ -40,7 +40,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> save(@Valid @RequestBody User user) {
-        if(userService.findByEmail(user.getMail()).isPresent()) {
+        if (userService.findByMail(user.getMail()).isPresent()) {
             throw new UserEmailAlreadyUsedException();
         }
 
