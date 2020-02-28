@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -38,7 +40,7 @@ public class Sale implements Serializable {
     @ManyToOne
     @JoinColumn(name = "group_id", referencedColumnName = "id")
     @NotNull
-    @JsonIgnore
+    @JsonProperty(access = Access.WRITE_ONLY)
     private Group group;
 
     @Column(length = 128)
