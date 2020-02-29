@@ -4,12 +4,12 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
+import br.com.jefferson.salesmanegement.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.ServletRequestUtils;
 
 import br.com.jefferson.salesmanegement.domain.models.User;
-import br.com.jefferson.salesmanegement.exceptions.UserNotFoundException;
 import br.com.jefferson.salesmanegement.services.UserService;
 
 @Service
@@ -43,7 +43,7 @@ public class RequestUtil {
         if (user.isPresent()) {
             return user.get();
         } else {
-            throw new UserNotFoundException();
+            throw new ResourceNotFoundException("O usuário informado não foi encontrado");
         }
     }
 }

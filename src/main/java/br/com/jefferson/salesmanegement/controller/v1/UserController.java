@@ -1,11 +1,11 @@
 package br.com.jefferson.salesmanegement.controller.v1;
 
+import br.com.jefferson.salesmanegement.exceptions.InvalidArgumentException;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.jefferson.salesmanegement.domain.dto.UserDto;
 import br.com.jefferson.salesmanegement.domain.models.User;
-import br.com.jefferson.salesmanegement.exceptions.UserEmailAlreadyUsedException;
 import br.com.jefferson.salesmanegement.services.UserService;
 
 import java.net.URI;
@@ -41,7 +41,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> save(@Valid @RequestBody User user) {
         if (userService.findByMail(user.getMail()).isPresent()) {
-            throw new UserEmailAlreadyUsedException();
+            throw new InvalidArgumentException("O email informado não está disponível");
         }
 
         User userSave = userService.save(user);
