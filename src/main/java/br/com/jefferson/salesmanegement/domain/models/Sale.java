@@ -33,12 +33,12 @@ public class Sale implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id", updatable = false)
     @JsonIgnore
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "group_id", referencedColumnName = "id")
+    @JoinColumn(name = "group_id", referencedColumnName = "id", updatable = false)
     @NotNull
     @JsonProperty(access = Access.WRITE_ONLY)
     private Group group;
