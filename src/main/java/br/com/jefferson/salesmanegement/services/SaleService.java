@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import br.com.jefferson.salesmanegement.exceptions.ResourceNotFoundException;
+import br.com.jefferson.salesmanegement.utils.RequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +21,15 @@ public class SaleService {
     @Autowired
     private GroupService groupService;
 
+    @Autowired
+    private RequestUtil requestUtil;
+
     public Optional<Sale> findSaleById(Long id) {
-        return saleRepository.findById(id);
+        return saleRepository.findByIdAndUser(id, requestUtil.getUserRequest());
     }
 
     public List<Sale> findAll() {
-        return saleRepository.findAll();
+        return saleRepository.findAllByUser(requestUtil.getUserRequest());
     }
 
     public Sale save(Sale sale) {
@@ -33,7 +37,9 @@ public class SaleService {
         Optional<Group> group = groupService.findById(idGroup);
 
         if (group.isPresent()) {
+            sale.setUser(requestUtil.getUserRequest());
             sale.setGroup(group.get());
+
             return saleRepository.save(sale);
 
         } else {

@@ -57,7 +57,6 @@ public class SaleController {
 
     @PostMapping
     public ResponseEntity<?> save(@Valid @RequestBody Sale sale) {
-        sale.setUser(requestUtil.getUserRequest());
         Sale saleSave = saleService.save(sale);
 
         URI location = ServletUriComponentsBuilder
@@ -70,7 +69,7 @@ public class SaleController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Sale> update (@RequestBody Sale sale, @PathVariable Long id) {
+    public ResponseEntity<Sale> update(@RequestBody Sale sale, @PathVariable Long id) {
         if (sale.getName() == null) {
             throw new InvalidArgumentException("nome");
         }
