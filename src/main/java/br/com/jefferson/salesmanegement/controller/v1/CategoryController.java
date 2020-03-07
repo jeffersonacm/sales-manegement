@@ -20,7 +20,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping(value = "{/id}")
+    @GetMapping(value = "{id}")
     public ResponseEntity<Categorie> findById(@PathVariable Long id) {
         Optional<Categorie> categorie = categoryService.findById(id);
 
@@ -56,7 +56,7 @@ public class CategoryController {
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping(value = "{/id}")
+    @PutMapping(value = "{id}")
     public ResponseEntity<Categorie> update(@Valid @RequestBody Categorie categorie, @PathVariable Long id) {
         Optional<Categorie> categoryFind = categoryService.findById(id);
 
@@ -69,6 +69,5 @@ public class CategoryController {
             throw new ResourceNotFoundException("Não foi possível encontrar uma categoria com o id: " + id);
         }
     }
-
 
 }

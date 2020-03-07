@@ -28,7 +28,6 @@ public class RequestUtil {
         String jwt = request.getHeader("Authorization");
         String jwtToken = null;
 
-        System.out.println(jwt);
         if(! jwt.equals(null) && jwt.startsWith("Bearer ")) {
             jwtToken = jwt.substring(7);
         }

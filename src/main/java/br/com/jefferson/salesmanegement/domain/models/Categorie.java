@@ -1,5 +1,7 @@
 package br.com.jefferson.salesmanegement.domain.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -30,9 +32,11 @@ public class Categorie implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonIgnore
     private User user;
 
     @OneToMany(mappedBy = "categorie", targetEntity = Product.class)
+    @JsonIgnore
     private List<Product> products;
 
 
