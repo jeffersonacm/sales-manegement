@@ -1,16 +1,11 @@
 package br.com.jefferson.salesmanegement.domain.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -25,23 +20,30 @@ public class Product implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "categorie_id", referencedColumnName = "id")
+    @NotNull
     private Categorie categorie;
 
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonIgnore
     private User user;
+
+    @Column(length = 128)
+    @NotNull
+    private String name;
+
+    @Column
+    @NotNull
+    private Float value;
+
+    @Column
+    private Float weight;
+
+    @Column
+    private Integer stock;
 
     @OneToMany(mappedBy = "product", targetEntity = ProductSold.class)
     private List<ProductSold> productsSold;
-
-    private String name;
-
-    private Float value;
-
-    private Float weight;
-
-    private Integer stock;
 
     public Product() {
 
@@ -93,6 +95,14 @@ public class Product implements Serializable {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }
