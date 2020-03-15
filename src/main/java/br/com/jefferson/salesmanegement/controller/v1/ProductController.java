@@ -45,12 +45,12 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<Product> save(@Valid @RequestBody Product product) {
-        Product categorieSave = productService.save(product);
+        Product productSave = productService.save(product);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(categorieSave.getId())
+                .buildAndExpand(productSave.getId())
                 .toUri();
 
         return ResponseEntity.created(location).build();

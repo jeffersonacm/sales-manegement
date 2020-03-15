@@ -3,6 +3,7 @@ package br.com.jefferson.salesmanegement.services;
 import java.util.List;
 import java.util.Optional;
 
+import br.com.jefferson.salesmanegement.exceptions.InvalidArgumentException;
 import br.com.jefferson.salesmanegement.exceptions.ResourceNotFoundException;
 import br.com.jefferson.salesmanegement.utils.RequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class SaleService {
     @Autowired
     private RequestUtil requestUtil;
 
-    public Optional<Sale> findSaleById(Long id) {
+    public Optional<Sale> findById(Long id) {
         return saleRepository.findByIdAndUser(id, requestUtil.getUserRequest());
     }
 
@@ -43,8 +44,13 @@ public class SaleService {
             return saleRepository.save(sale);
 
         } else {
-            throw new ResourceNotFoundException("Não foi possível encontrar um grupo com o id: " + idGroup);
+            throw new InvalidArgumentException("Não foi possível encontrar um grupo com o id: " + idGroup);
         }
     }
+
+    public Boolean isSaleExist(Long id) {
+        return this.findById(id).isPresent();
+    }
+
 
 }

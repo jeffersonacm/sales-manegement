@@ -1,6 +1,5 @@
 package br.com.jefferson.salesmanegement.domain.repository;
 
-import br.com.jefferson.salesmanegement.domain.models.Group;
 import br.com.jefferson.salesmanegement.domain.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -31,4 +31,8 @@ public class CategoryService {
         return categoryRepository.save(categorie);
     }
 
+    public Boolean isCategorieExist(Long id) {
+        return findById(id).isPresent();
+    }
+
 }

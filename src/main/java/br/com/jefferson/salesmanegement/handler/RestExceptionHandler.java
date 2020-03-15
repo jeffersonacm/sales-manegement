@@ -32,7 +32,7 @@ public class RestExceptionHandler {
             ErrorDetails errorDetails = ErrorDetails.ErrorDetailsBuilder
                     .newBuilder()
                     .timestamp(new Date().getTime())
-                    .status(HttpStatus.NOT_FOUND.value())
+                    .status(HttpStatus.BAD_REQUEST.value())
                     .title("Argumento inválido")
                     .message(rnfException.getMessage())
                     .build();

@@ -35,7 +35,7 @@ public class SaleController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Sale> findById(@PathVariable Long id) {
-        Optional<Sale> sale = saleService.findSaleById(id);
+        Optional<Sale> sale = saleService.findById(id);
 
         if (sale.isPresent()) {
             return ResponseEntity.ok(sale.get());
@@ -74,7 +74,7 @@ public class SaleController {
             throw new InvalidArgumentException("nome");
         }
 
-        Optional<Sale> saleFind = saleService.findSaleById(id);
+        Optional<Sale> saleFind = saleService.findById(id);
 
         if (saleFind.isPresent()) {
             Sale saleUpdate = saleFind.get();

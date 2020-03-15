@@ -1,6 +1,10 @@
 package br.com.jefferson.salesmanegement.domain.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,6 +37,7 @@ public class ProductSold implements Serializable {
     private Product product;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
@@ -40,8 +45,10 @@ public class ProductSold implements Serializable {
     @NotNull
     private Integer quantity;
 
-    public ProductSold() {
+    @Column
+    private LocalDateTime dateSold;
 
+    public ProductSold() {
     }
 
     public Long getId() {
@@ -82,6 +89,14 @@ public class ProductSold implements Serializable {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public LocalDateTime getDateSold() {
+        return dateSold;
+    }
+
+    public void setDateSold(LocalDateTime dateSold) {
+        this.dateSold = dateSold;
     }
 
 }
