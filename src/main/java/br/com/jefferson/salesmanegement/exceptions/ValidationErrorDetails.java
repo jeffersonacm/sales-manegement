@@ -67,14 +67,14 @@ public class ValidationErrorDetails extends ErrorDetails {
         }
 
         public ValidationErrorDetails build() {
-            ValidationErrorDetails ValidationErrorDetails = new ValidationErrorDetails();
-            ValidationErrorDetails.setTitle(title);
-            ValidationErrorDetails.setStatus(status);
-            ValidationErrorDetails.setMessage(message);
-            ValidationErrorDetails.setTimestamp(timestamp);
-            ValidationErrorDetails.setField(field);
-            ValidationErrorDetails.setFieldMessage(fieldMessage);
-            return ValidationErrorDetails;
+            ValidationErrorDetails validationErrorDetails = new ValidationErrorDetails();
+            validationErrorDetails.setTitle(title);
+            validationErrorDetails.setStatus(status);
+            validationErrorDetails.setMessage(message);
+            validationErrorDetails.setTimestamp(timestamp);
+            validationErrorDetails.setField(field);
+            validationErrorDetails.setFieldMessage(fieldMessage);
+            return validationErrorDetails;
         }
     }
 

@@ -3,12 +3,10 @@ package br.com.jefferson.salesmanegement.utils;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
-
-import br.com.jefferson.salesmanegement.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.ServletRequestUtils;
 
+import br.com.jefferson.salesmanegement.exceptions.ResourceNotFoundException;
 import br.com.jefferson.salesmanegement.domain.models.User;
 import br.com.jefferson.salesmanegement.services.UserService;
 
@@ -28,7 +26,7 @@ public class RequestUtil {
         String jwt = request.getHeader("Authorization");
         String jwtToken = null;
 
-        if(! jwt.equals(null) && jwt.startsWith("Bearer ")) {
+        if (jwt != null && jwt.startsWith("Bearer ")) {
             jwtToken = jwt.substring(7);
         }
 

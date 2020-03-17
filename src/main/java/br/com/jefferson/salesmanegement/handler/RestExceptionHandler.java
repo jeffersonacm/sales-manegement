@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class RestExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException rnfException) {
+    public ResponseEntity handleResourceNotFoundException(ResourceNotFoundException rnfException) {
         ErrorDetails errorDetails = ErrorDetails.ErrorDetailsBuilder
                 .newBuilder()
                 .timestamp(new Date().getTime())
@@ -28,7 +28,7 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(InvalidArgumentException.class)
-        public ResponseEntity<?> handleInvalidArgumentException(InvalidArgumentException rnfException) {
+        public ResponseEntity handleInvalidArgumentException(InvalidArgumentException rnfException) {
             ErrorDetails errorDetails = ErrorDetails.ErrorDetailsBuilder
                     .newBuilder()
                     .timestamp(new Date().getTime())
@@ -40,7 +40,7 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException manvException) {
+    public ResponseEntity handleMethodArgumentNotValidException(MethodArgumentNotValidException manvException) {
         List<FieldError> fieldErrorList = manvException.getBindingResult().getFieldErrors();
         String fields = fieldErrorList.stream().map(FieldError::getField).collect(Collectors.joining(";"));
         String fieldMessages = fieldErrorList.stream().map(FieldError::getDefaultMessage).collect(Collectors.joining(";"));
@@ -55,6 +55,5 @@ public class RestExceptionHandler {
                 .build();
         return new ResponseEntity<>(validationErrorDetails, HttpStatus.BAD_REQUEST);
     }
-
 
 }

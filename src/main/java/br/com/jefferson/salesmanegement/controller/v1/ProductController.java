@@ -35,7 +35,7 @@ public class ProductController {
     public ResponseEntity<List<Product>> findAllByCategorie(@PathVariable Long id) {
         List<Product> productList = productService.findAllByCategorieId(id);
 
-        if (productList.size() > 0) {
+        if (productList.isEmpty()) {
             return ResponseEntity.ok(productList);
         } else {
             return ResponseEntity.noContent().build();

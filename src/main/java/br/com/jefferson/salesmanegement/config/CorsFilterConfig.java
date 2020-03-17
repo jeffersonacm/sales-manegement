@@ -1,4 +1,4 @@
-package br.com.codenation.errordashboard.config;
+package br.com.jefferson.salesmanegement.config;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

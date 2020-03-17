@@ -37,7 +37,7 @@ public class GroupController {
     public ResponseEntity<List<Group>> findAll() {
         List<Group> groupList = groupService.findAll();
 
-        if (groupList.size() > 0) {
+        if (groupList.isEmpty()) {
             return ResponseEntity.ok(groupList);
         } else {
             return ResponseEntity.noContent().build();

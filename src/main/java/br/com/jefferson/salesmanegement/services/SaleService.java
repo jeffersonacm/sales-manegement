@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import br.com.jefferson.salesmanegement.exceptions.InvalidArgumentException;
-import br.com.jefferson.salesmanegement.exceptions.ResourceNotFoundException;
 import br.com.jefferson.salesmanegement.utils.RequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +50,5 @@ public class SaleService {
     public Boolean isSaleExist(Long id) {
         return this.findById(id).isPresent();
     }
-
 
 }

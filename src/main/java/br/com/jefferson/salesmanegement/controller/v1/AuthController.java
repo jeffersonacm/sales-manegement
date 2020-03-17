@@ -2,6 +2,7 @@ package br.com.jefferson.salesmanegement.controller.v1;
 
 import javax.validation.Valid;
 
+import br.com.jefferson.salesmanegement.exceptions.InvalidArgumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,14 +33,14 @@ public class AuthController {
     private JwtUtil jwtUtil;
 
     @PostMapping("/login")
-    public ResponseEntity<ResponseDto> auth(@Valid @RequestBody AuthDto authDto) throws Exception {
+    public ResponseEntity<ResponseDto> auth(@Valid @RequestBody AuthDto authDto) {
         try {
 			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(authDto.getMail(), authDto.getPassword())
 			);
 		}
 		catch (BadCredentialsException e) {
-			throw new Exception("Usuário ou senha invalidos", e);
+			throw new InvalidArgumentException("Usuário ou senha inválidos");
 		}
 
 		final UserDetails userDetails = userDetailsService

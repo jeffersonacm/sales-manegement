@@ -48,7 +48,7 @@ public class SaleController {
     public ResponseEntity<List<Sale>> findAll() {
         List<Sale> sales = saleService.findAll();
 
-        if (sales.size() == 0) {
+        if (sales.isEmpty()) {
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.ok(sales);
@@ -56,7 +56,7 @@ public class SaleController {
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@Valid @RequestBody Sale sale) {
+    public ResponseEntity<Sale> save(@Valid @RequestBody Sale sale) {
         Sale saleSave = saleService.save(sale);
 
         URI location = ServletUriComponentsBuilder

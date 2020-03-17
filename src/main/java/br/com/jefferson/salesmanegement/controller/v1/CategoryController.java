@@ -35,7 +35,7 @@ public class CategoryController {
     public ResponseEntity<List<Categorie>> findAll() {
         List<Categorie> categorieList = categoryService.findAll();
 
-        if (categorieList.size() > 0) {
+        if (categorieList.isEmpty()) {
             return ResponseEntity.ok(categorieList);
         } else {
             return ResponseEntity.noContent().build();

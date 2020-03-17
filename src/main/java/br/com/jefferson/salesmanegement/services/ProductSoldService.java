@@ -63,9 +63,9 @@ public class ProductSoldService {
 
     public ProductSold prepareUpdate(ProductSold productSold, Integer oldQuantitySold) {
         Integer newQuantitySold = productSold.getQuantity();
-        if(newQuantitySold == 0) {
+        if (newQuantitySold == 0) {
             throw new InvalidArgumentException("A quantidade de produtos vendidos não pode ser 0");
-        } else if (newQuantitySold != oldQuantitySold) {
+        } else if (! newQuantitySold.equals(oldQuantitySold)) {
             newQuantitySold = newQuantitySold - oldQuantitySold;
         }
 

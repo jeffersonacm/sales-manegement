@@ -4,7 +4,6 @@ import br.com.jefferson.salesmanegement.domain.models.Categorie;
 import br.com.jefferson.salesmanegement.domain.models.Product;
 import br.com.jefferson.salesmanegement.domain.repository.ProductRepository;
 import br.com.jefferson.salesmanegement.exceptions.InvalidArgumentException;
-import br.com.jefferson.salesmanegement.exceptions.ResourceNotFoundException;
 import br.com.jefferson.salesmanegement.utils.RequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +28,7 @@ public class ProductService {
     }
 
     public List<Product> findAllByCategorieId(Long id) {
-        if (categorieService.isCategorieExist(id)) {
+        if (Boolean.TRUE.equals(categorieService.isCategorieExist(id))) {
             throw new InvalidArgumentException("Não foi possível encontrar uma categoria com o id: " + id);
         } else {
             Categorie categorie = categorieService.findById(id).get();
@@ -60,10 +59,8 @@ public class ProductService {
         }
 
         int stock = product.get().getStock();
-        if (stock >= quantitySold) {
-            return true;
-        } else {
-            return false;
-        }
+
+        return stock >= quantitySold;
     }
+
 }
