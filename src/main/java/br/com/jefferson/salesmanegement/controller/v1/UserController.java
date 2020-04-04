@@ -38,6 +38,17 @@ public class UserController {
         }
     }
 
+    @GetMapping(value = "/mail/{mail}")
+    public ResponseEntity<UserDto> findByMail(@PathVariable String mail) {
+        Optional<User> user = userService.findByMail(mail);
+
+        if (user.isPresent()) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
+
     @PostMapping
     public ResponseEntity<User> save(@Valid @RequestBody User user) {
         if (userService.findByMail(user.getMail()).isPresent()) {

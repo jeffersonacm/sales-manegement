@@ -1,4 +1,4 @@
-package br.com.jefferson.salesmanegement.integration;
+package br.com.jefferson.salesmanegement.integration.mockito;
 
 import br.com.jefferson.salesmanegement.domain.dto.AuthDto;
 import br.com.jefferson.salesmanegement.domain.dto.ResponseDto;
@@ -53,7 +53,7 @@ public class UserControllerTest {
 
     @Test
     public void createWhenReturn201CreatedAndToken() throws Exception {
-        User user = new User(1L, "name", "jefferson@gmail.com", "123456");
+        User user = User.builder().id(1L).name("name").mail("jefferson@gmail.com").password("123456").build();
         Mockito.when(userService.save(Mockito.any(User.class))).thenReturn(user);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
@@ -71,7 +71,7 @@ public class UserControllerTest {
 
     @Test
     public void createWhenReturn400BadRequestInvalidEmail() throws Exception {
-        User user = new User(1L, "name", "jeffersongmailcom", "123456");
+        User user = User.builder().id(1L).name("name").mail("jeffersongmail.com").password("123456").build();
         Mockito.when(userService.save(Mockito.any(User.class))).thenReturn(user);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
@@ -88,7 +88,7 @@ public class UserControllerTest {
 
     @Test
     public void createWhenReturn400BadRequestPasswordLessThanSix() throws Exception {
-        User user = new User("name", "jefferson@gmail.com", "12345");
+        User user = User.builder().id(1L).name("name").mail("jefferson@gmail.com").password("12345").build();
         Mockito.when(userService.save(Mockito.any(User.class))).thenReturn(user);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
