@@ -1,9 +1,18 @@
 package br.com.jefferson.salesmanegement.domain.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class AuthDto {
 
     @NotNull
@@ -14,10 +23,6 @@ public class AuthDto {
     @NotNull
     @Size(min = 6, max = 128)
     private String password;
-
-    public AuthDto() {
-
-    }
 
     public String getMail() {
         return this.mail;

@@ -16,6 +16,10 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import br.com.jefferson.salesmanegement.domain.dto.UserDto;
@@ -23,6 +27,10 @@ import br.com.jefferson.salesmanegement.domain.dto.UserDto;
 import java.util.List;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "tb_users")
 @EntityListeners(AuditingEntityListener.class)
 public class User implements Serializable {
@@ -66,42 +74,6 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user", targetEntity = ProductSold.class)
     @JsonIgnore
     private List<ProductSold> productsSold;
-
-    public User() {
-
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMail() {
-        return this.mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public UserDto toUserDto() {
         UserDto userDto = new UserDto();

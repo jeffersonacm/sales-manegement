@@ -1,8 +1,15 @@
 package br.com.jefferson.salesmanegement.domain.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDto {
 
     private Long id;
@@ -13,10 +20,6 @@ public class UserDto {
     @Column(length = 128, unique = true)
     @NotNull
     private String mail;
-
-    public UserDto() {
-
-    }
 
     public Long getId() {
         return this.id;

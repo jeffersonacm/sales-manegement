@@ -1,6 +1,10 @@
 package br.com.jefferson.salesmanegement.domain.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,6 +13,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "tb_products")
 public class Product implements Serializable {
 
@@ -44,10 +52,6 @@ public class Product implements Serializable {
 
     @OneToMany(mappedBy = "product", targetEntity = ProductSold.class)
     private List<ProductSold> productsSold;
-
-    public Product() {
-
-    }
 
     public Long getId() {
         return this.id;
