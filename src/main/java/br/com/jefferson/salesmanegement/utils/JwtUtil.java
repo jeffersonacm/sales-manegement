@@ -3,8 +3,10 @@ package br.com.jefferson.salesmanegement.utils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.nio.file.AccessDeniedException;
 import java.util.Date;
@@ -55,7 +57,7 @@ public class JwtUtil {
             return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
 
         } catch (Exception e) {
-            throw new AccessDeniedException(null);
+            throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED);
         }
     }
 }

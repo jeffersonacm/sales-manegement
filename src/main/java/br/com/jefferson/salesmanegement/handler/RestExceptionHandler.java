@@ -36,7 +36,7 @@ public class RestExceptionHandler {
                     .title("Argumento inválido")
                     .message(rnfException.getMessage())
                     .build();
-            return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
