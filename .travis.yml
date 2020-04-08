@@ -1,0 +1,20 @@
+language: java
+jdk:
+  - oraclejdk8
+before_install:
+  - sudo apt-get update
+  - echo "Let's start Maven Package!"
+  - mvn clean package
+script:
+  - docker-composer build
+before_deploy:
+  echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+deploy:
+  provider: script
+  script:
+     sudo docker tag salesmanegement:latest jeffersonacm/salesmanegement:latest;
+     docker push jeffersonacm/salesmanegement;
+  on:
+    branch: master
+notifications:
+  email: false
